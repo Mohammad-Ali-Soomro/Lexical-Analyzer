@@ -35,7 +35,7 @@ python main.py test.cpp -o custom_output.txt
 The analyzer produces output in the following format:
 
 ```
-Line <line_number>: Token = <token_value> → <token_type>
+Line <line_number>: Token = <token_value> -> <token_type>
 ```
 
 ## Example
@@ -54,13 +54,13 @@ int main() {
 
 Output (tokens):
 ```
-Line 1: Token = int → Keyword
-Line 1: Token = main → Identifier
-Line 1: Token = ( → Separator
-Line 1: Token = ) → Separator
-Line 1: Token = { → Separator
-Line 2: Token = float → Keyword
-Line 2: Token = x → Identifier
+Line 1: Token = int -> Keyword
+Line 1: Token = main -> Identifier
+Line 1: Token = ( -> Separator
+Line 1: Token = ) -> Separator
+Line 1: Token = { -> Separator
+Line 2: Token = float -> Keyword
+Line 2: Token = x -> Identifier
 ...
 ```
 

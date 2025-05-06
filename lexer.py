@@ -66,7 +66,7 @@ class Lexer:
         """
         with open(self.output_file, 'w') as file:
             for token in self.tokens:
-                file.write(f"Line {token['line']}: Token = {token['value']} → {token['type']}\n")
+                file.write(f"Line {token['line']}: Token = {token['value']} -> {token['type']}\n")
 
     def get_tokens(self):
         """
