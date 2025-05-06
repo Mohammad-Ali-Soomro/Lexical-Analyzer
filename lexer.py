@@ -1,5 +1,6 @@
 import re
-from token_definitions import COMPILED_PATTERNS, is_keyword, TOKEN_TYPES
+from token_definations import COMPILED_PATTERNS, is_keyword, TOKEN_TYPES
+
 
 class Lexer:
     def __init__(self, input_file, output_file):
