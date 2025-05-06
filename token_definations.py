@@ -37,7 +37,7 @@ CPP_KEYWORDS = [
 TOKEN_PATTERNS = [
     # Comments
     (r'\/\/.*', TOKEN_TYPES['COMMENT']),
-    (r'\/\*[\s\S]*?\*\/', TOKEN_TYPES['COMMENT']),
+    (r'\/\*(.|\n)*?\*\/', TOKEN_TYPES['COMMENT']),
     
     # Preprocessor directives
     (r'#\w+(?:\s+<.*?>|\s+".*?")?', TOKEN_TYPES['PREPROCESSOR']),

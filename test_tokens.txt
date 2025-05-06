@@ -83,11 +83,8 @@ Line 21: Token = << -> Operator
 Line 21: Token = endl -> Identifier
 Line 21: Token = ; -> Separator
 Line 22: Token = } -> Separator
-Line 24: Token = / -> Operator
-Line 24: Token = * -> Operator
-Line 24: Token = This -> Identifier
-Line 24: Token = is -> Identifier
-Line 24: Token = a -> Identifier
+Line 24: Token = /* This is a 
+       multi-line comment */ -> Comment
 Line 25: Token = multi -> Identifier
 Line 25: Token = - -> Operator
 Line 25: Token = line -> Identifier

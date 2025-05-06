@@ -1,7 +1,6 @@
 import re
 from token_definations import COMPILED_PATTERNS, is_keyword, TOKEN_TYPES
 
-
 class Lexer:
     def __init__(self, input_file, output_file):
         self.input_file = input_file
@@ -28,6 +27,46 @@ class Lexer:
         
         while position < len(line):
             match = None
+            
+            # Special handling for multi-line comments
+            if position + 1 < len(line) and line[position:position+2] == '/*':
+                # We found the start of a multi-line comment
+                # We need to read multiple lines to find the end
+                comment_start = position
+                comment_text = line[position:]
+                end_found = '/*' in line and '*/' in line[line.find('/*') + 2:]
+                current_line = line_number
+                
+                if not end_found:
+                    # Need to read more lines to find the end of comment
+                    comment_lines = [line[position:]]
+                    with open(self.input_file, 'r') as file:
+                        all_lines = file.readlines()
+                        
+                    for i in range(line_number, len(all_lines)):
+                        if '*/' in all_lines[i]:
+                            # Found the end
+                            end_found = True
+                            comment_lines.append(all_lines[i].rstrip('\n').split('*/')[0] + '*/')
+                            break
+                        elif i > line_number - 1:  # Skip current line as we already added it
+                            comment_lines.append(all_lines[i].rstrip('\n'))
+                    
+                    # Combine all comment lines
+                    comment_text = '\n'.join(comment_lines)
+                    
+                # Add the multi-line comment as a token
+                self.tokens.append({
+                    'line': line_number,
+                    'type': TOKEN_TYPES['COMMENT'],
+                    'value': comment_text if end_found else comment_text + "*/"  # Ensure it ends properly
+                })
+                
+                # Move position to the end of the line
+                position = len(line)
+                continue
+            
+            # Regular token matching
             for pattern, token_type in COMPILED_PATTERNS:
                 match = pattern.match(line, position)
                 if match:
